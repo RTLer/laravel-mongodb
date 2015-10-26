@@ -19,11 +19,9 @@ trait RelationKeysTrait
     public function getParentKey()
     {
         $value = $this->parent->getAttribute($this->localKey);
-        $isObject = config('database.connections.mongodb.options.mongoid', false);
-        if ($isObject && \MongoId::isValid($value)) {
+        if(\MongoId::isValid ($value)){
             return new \MongoId($value);
         }
-
         return $value;
     }
 }
