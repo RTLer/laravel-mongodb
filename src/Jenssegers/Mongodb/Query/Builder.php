@@ -549,9 +549,10 @@ class Builder extends BaseBuilder {
      * @param  string  $column
      * @return mixed
      */
-    public function pluck($column)
+    public function pluck($column, $key = null)
     {
-        $result = (array) $this->first([$column]);
+        $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
+
 
         // MongoDB returns the _id field even if you did not ask for it, so we need to
         // remove this from the result.
@@ -560,7 +561,11 @@ class Builder extends BaseBuilder {
             unset($result['_id']);
         }
 
-        return count($result) > 0 ? reset($result) : null;
+        return Arr::pluck(
+            $results,
+            $this->stripeTableForPluck($column),
+            $this->stripeTableForPluck($key)
+        );
     }
 
     /**
