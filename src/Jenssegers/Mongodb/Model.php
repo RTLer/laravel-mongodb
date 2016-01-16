@@ -38,6 +38,13 @@ abstract class Model extends BaseModel {
      * @var Relation
      */
     protected $parentRelation;
+    
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * Custom accessor for the model's id.
