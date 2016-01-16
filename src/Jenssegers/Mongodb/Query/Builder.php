@@ -9,6 +9,7 @@ use Jenssegers\Mongodb\Connection;
 use MongoDate;
 use MongoId;
 use MongoRegex;
+use Illuminate\Support\Arr;
 
 class Builder extends BaseBuilder {
 
