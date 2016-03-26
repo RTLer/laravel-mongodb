@@ -180,7 +180,7 @@ class EmbedsMany extends EmbedsOneOrMany
         $ids = $this->getIdsArrayFrom($ids);
 
         // Get all models matching the given ids.
-        $models = $this->getResults()->only($ids);
+        $models = $this->getResults()->whereIn('_id', $ids);
 
         // Pull the documents from the database.
         foreach ($models as $model) {
