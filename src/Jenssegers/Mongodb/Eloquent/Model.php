@@ -54,7 +54,7 @@ abstract class Model extends BaseModel
 
         // Convert ObjectID to string.
         if ($value instanceof ObjectID) {
-            return (string) $value;
+            return $value;
         }
 
         return $value;
@@ -280,7 +280,7 @@ abstract class Model extends BaseModel
     public function setAttribute($key, $value)
     {
         // Convert _id to ObjectID.
-        if ($key == '_id' and is_string($value)) {
+        if (ends_with($key, '_id') and is_string($value)) {
             $builder = $this->newBaseQueryBuilder();
 
             $value = $builder->convertKey($value);
