@@ -54,7 +54,7 @@ abstract class Model extends BaseModel
 
         // Convert ObjectID to string.
         if ($value instanceof ObjectID) {
-            return $value;
+            return (string) $value;
         }
 
         return $value;
