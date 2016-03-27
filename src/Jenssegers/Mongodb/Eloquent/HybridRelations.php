@@ -1,12 +1,12 @@
 <?php namespace Jenssegers\Mongodb\Eloquent;
 
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Str;
 use Jenssegers\Mongodb\Relations\BelongsTo;
 use Jenssegers\Mongodb\Relations\BelongsToMany;
 use Jenssegers\Mongodb\Relations\HasMany;
 use Jenssegers\Mongodb\Relations\HasOne;
+use Jenssegers\Mongodb\Relations\MorphMany;
+use Jenssegers\Mongodb\Relations\MorphOne;
 use Jenssegers\Mongodb\Relations\MorphTo;
 
 trait HybridRelations
