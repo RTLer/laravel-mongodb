@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use MongoDB\BSON\ObjectID;
 use MongoDB\Driver\Cursor;
 use MongoDB\Model\BSONDocument;
 
@@ -202,7 +203,13 @@ class Builder extends EloquentBuilder
         }
 
         // All related ids.
-        $relatedIds = array_keys($relationCount);
+        $relatedIds = array_map(function ($id) {
+            if (is_string($id) and strlen($id) === 24 and ctype_xdigit($id)) {
+                return new ObjectID($id);
+            }
+
+            return $id;
+        }, array_keys($relationCount));
 
         // Add whereIn to the query.
         return $this->whereIn($this->model->getKeyName(), $relatedIds, $boolean, $not);
